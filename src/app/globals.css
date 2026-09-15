@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-ink: #16181a;
+  --color-paper: #efece6;
+  --color-paper-2: #e4dfd5;
+  --color-mist: #c8cdd0;
+  --color-steel: #3a4a52;
+  --color-steel-deep: #1a2328;
+  --color-copper: #a65b32;
+  --color-line: #cfc6b5;
+  --color-line-strong: #b7ad98;
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-newsreader), ui-serif, Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-paper);
+  background-image:
+    linear-gradient(
+      color-mix(in oklab, var(--color-paper) 90%, transparent),
+      color-mix(in oklab, var(--color-paper) 90%, transparent)
+    ),
+    url("/images/texture-steel.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: #3a4a52;
+  color: #efece6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
