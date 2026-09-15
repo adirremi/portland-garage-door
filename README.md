@@ -20,4 +20,6 @@ npm run dev
 
 ## Deploy
 
-Set `NEXT_PUBLIC_SITE_URL` to the live domain.
+Live: https://portland-garage-door-vert.vercel.app
+
+Set `NEXT_PUBLIC_SITE_URL` to that domain.
