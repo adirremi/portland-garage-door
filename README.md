@@ -1,6 +1,6 @@
-# Portland Garage Door
+# HighGuard Garage Door Repair
 
-Portland, Oregon garage door site.
+Happy Valley, Oregon garage door site.
 
 ## Pages
 
@@ -9,7 +9,7 @@ Portland, Oregon garage door site.
 - `/about`
 - `/locations`
 - `/contact`
-- `/locations/[street-slug]` one page per address, once listed
+- `/locations/16017-se-happy-valley-town-center-dr`
 
 ## Local
 

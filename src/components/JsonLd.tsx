@@ -1,4 +1,4 @@
-import { locations, type Location } from "@/data/locations";
+import { fullAddress, locations, type Location } from "@/data/locations";
 import { site } from "@/lib/site";
 
 function Script({ data }: { data: Record<string, unknown> }) {
@@ -11,35 +11,59 @@ function Script({ data }: { data: Record<string, unknown> }) {
 }
 
 export function OrganizationJsonLd() {
+  const primary = locations[0];
+
   return (
     <Script
       data={{
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
         name: site.name,
+        alternateName: site.legalName,
         url: site.url,
-        areaServed: {
-          "@type": "City",
-          name: "Portland",
-          address: { "@type": "PostalAddress", addressRegion: "OR" },
-        },
-        ...(locations.length > 0
+        telephone: primary
+          ? `+1${primary.phone.replace(/\D/g, "")}`
+          : undefined,
+        image: `${site.url}/images/logo.png`,
+        areaServed: [
+          {
+            "@type": "City",
+            name: "Happy Valley",
+            address: { "@type": "PostalAddress", addressRegion: "OR" },
+          },
+          {
+            "@type": "City",
+            name: "Portland",
+            address: { "@type": "PostalAddress", addressRegion: "OR" },
+          },
+        ],
+        ...(primary
           ? {
-              location: locations.map((location) => ({
-                "@type": "Place",
-                name: `${site.name} — ${location.street}`,
-                telephone: `+1${location.phone.replace(/\D/g, "")}`,
-                address: {
-                  "@type": "PostalAddress",
-                  streetAddress: location.street,
-                  addressLocality: "Portland",
-                  addressRegion: "OR",
-                  postalCode: location.zip,
-                  addressCountry: "US",
-                },
-              })),
+              hasMap: primary.mapUrl,
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: primary.street,
+                addressLocality: primary.city,
+                addressRegion: "OR",
+                postalCode: primary.zip,
+                addressCountry: "US",
+              },
             }
           : {}),
+        location: locations.map((location) => ({
+          "@type": "Place",
+          name: `${site.name} — ${location.street}`,
+          telephone: `+1${location.phone.replace(/\D/g, "")}`,
+          hasMap: location.mapUrl,
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: location.street,
+            addressLocality: location.city,
+            addressRegion: "OR",
+            postalCode: location.zip,
+            addressCountry: "US",
+          },
+        })),
       }}
     />
   );
@@ -57,7 +81,7 @@ export function LocationJsonLd({ location }: { location: Location }) {
         address: {
           "@type": "PostalAddress",
           streetAddress: location.street,
-          addressLocality: "Portland",
+          addressLocality: location.city,
           addressRegion: "OR",
           postalCode: location.zip,
           addressCountry: "US",
@@ -67,4 +91,8 @@ export function LocationJsonLd({ location }: { location: Location }) {
       }}
     />
   );
+}
+
+export function locationPlainAddress(location: Location) {
+  return fullAddress(location);
 }

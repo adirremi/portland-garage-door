@@ -25,8 +25,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const location = getLocation(slug);
   if (!location) return {};
 
-  const title = `${location.street}, Portland`;
-  const description = `Garage door work at ${location.street}, ${location.neighborhood}. Call ${location.phone}.`;
+  const title = `${location.street}, ${location.city}`;
+  const description = `Garage door work at ${location.street}, ${location.city}. Call ${location.phone}.`;
 
   return {
     title,
@@ -51,11 +51,11 @@ export default async function LocationPage({ params }: Props) {
         title={location.street}
       >
         <p className="mt-3 text-base text-paper/75">
-          Portland, OR {location.zip}
+          {location.city}, OR {location.zip}
         </p>
         <p className="mt-5 max-w-xl text-base leading-7 text-paper/75">
-          Garage door work from this Portland location. Call or open the map for{" "}
-          {location.neighborhood}.
+          Garage door work from this {location.city} shop. Call or open the map
+          for {location.neighborhood}.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           <PhoneLink phone={location.phone} variant="paper" className="min-w-48" />

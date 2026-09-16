@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { services } from "@/data/media";
 import { PageBanner, ServicePhoto } from "@/components/Photo";
-import { PageLink } from "@/components/links";
+import { PageLink, PhoneLink } from "@/components/links";
+import { shop } from "@/data/locations";
 
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Garage door repair, springs, openers, and door work in Portland, Oregon.",
+    "Garage door repair, springs, openers, and door work from Happy Valley, Oregon.",
 };
 
 export default function ServicesPage() {
@@ -14,8 +15,8 @@ export default function ServicesPage() {
     <>
       <PageBanner kicker="Services" title="The work, kept to the door.">
         <p className="mt-5 max-w-xl text-base leading-7 text-paper/75">
-          Repair, springs, openers, panels, and full doors. The service area
-          is listed on the locations page.
+          Repair, springs, openers, panels, and full doors. Call the Happy
+          Valley shop for the property you have in mind.
         </p>
       </PageBanner>
 
@@ -42,11 +43,9 @@ export default function ServicesPage() {
         </div>
 
         <div className="mt-14 flex flex-wrap gap-3">
-          <PageLink href="/locations" variant="primary">
-            Service area
-          </PageLink>
-          <PageLink href="/about" variant="outline">
-            About the company
+          <PhoneLink phone={shop.phone} />
+          <PageLink href="/locations" variant="outline">
+            Shop and service area
           </PageLink>
         </div>
       </div>

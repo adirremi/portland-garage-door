@@ -3,6 +3,7 @@ import { Geist, Newsreader } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { OrganizationJsonLd } from "@/components/JsonLd";
+import { CallBar } from "@/components/Shop";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -24,13 +25,17 @@ export const metadata: Metadata = {
     template: `%s | ${site.name}`,
   },
   description: site.description,
+  icons: {
+    icon: "/images/logo.png",
+    apple: "/images/logo.png",
+  },
   openGraph: {
     title: site.name,
     description: site.description,
     locale: "en_US",
     type: "website",
     siteName: site.name,
-    images: [{ url: "/images/hero-door.jpg" }],
+    images: [{ url: "/images/hero-cover.jpg" }],
   },
   robots: {
     index: true,
@@ -57,6 +62,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <Footer />
+        <CallBar />
       </body>
     </html>
   );

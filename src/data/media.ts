@@ -1,7 +1,11 @@
 export const photos = {
+  logo: {
+    src: "/images/logo.png",
+    alt: "HighGuard Garage Door Repair",
+  },
   hero: {
-    src: "/images/hero-door.jpg",
-    alt: "Sectional steel garage door on a Portland house",
+    src: "/images/hero-cover.jpg",
+    alt: "HighGuard technician at a sectional garage door in Happy Valley",
   },
   repair: {
     src: "/images/service-repair.jpg",

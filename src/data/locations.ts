@@ -1,4 +1,5 @@
 export type Region =
+  | "East Metro"
   | "Central"
   | "Northeast"
   | "Southeast"
@@ -9,6 +10,7 @@ export type Region =
 export type Location = {
   slug: string;
   street: string;
+  city: string;
   zip: string;
   neighborhood: string;
   region: Region;
@@ -16,10 +18,23 @@ export type Location = {
   mapUrl: string;
 };
 
-/** Storefronts, phones, and map links go here when the client sends them. */
-export const locations: Location[] = [];
+export const locations: Location[] = [
+  {
+    slug: "16017-se-happy-valley-town-center-dr",
+    street: "16017 SE Happy Valley Town Center Dr",
+    city: "Happy Valley",
+    zip: "97086",
+    neighborhood: "Happy Valley Town Center",
+    region: "East Metro",
+    phone: "971-535-3718",
+    mapUrl: "https://maps.app.goo.gl/ukmYyvyoMq1u9egx5",
+  },
+];
+
+export const shop = locations[0];
 
 export const regions: Region[] = [
+  "East Metro",
   "Central",
   "Northeast",
   "Southeast",
@@ -28,20 +43,21 @@ export const regions: Region[] = [
   "Southwest",
 ];
 
-export const areas: { name: string; region: Region }[] = [
-  { name: "Downtown", region: "Central" },
-  { name: "Pearl District", region: "Central" },
-  { name: "Lloyd District", region: "Central" },
-  { name: "Alberta", region: "Northeast" },
-  { name: "Hollywood", region: "Northeast" },
-  { name: "Hawthorne", region: "Southeast" },
-  { name: "Division", region: "Southeast" },
-  { name: "Sellwood", region: "Southeast" },
-  { name: "Nob Hill", region: "Northwest" },
-  { name: "St. Johns", region: "North" },
-  { name: "Kenton", region: "North" },
-  { name: "Multnomah", region: "Southwest" },
-  { name: "Hillsdale", region: "Southwest" },
+export const areas: { name: string; region: Region; city: string }[] = [
+  { name: "Happy Valley", region: "East Metro", city: "Happy Valley, OR" },
+  { name: "Downtown", region: "Central", city: "Portland, OR" },
+  { name: "Pearl District", region: "Central", city: "Portland, OR" },
+  { name: "Lloyd District", region: "Central", city: "Portland, OR" },
+  { name: "Alberta", region: "Northeast", city: "Portland, OR" },
+  { name: "Hollywood", region: "Northeast", city: "Portland, OR" },
+  { name: "Hawthorne", region: "Southeast", city: "Portland, OR" },
+  { name: "Division", region: "Southeast", city: "Portland, OR" },
+  { name: "Sellwood", region: "Southeast", city: "Portland, OR" },
+  { name: "Nob Hill", region: "Northwest", city: "Portland, OR" },
+  { name: "St. Johns", region: "North", city: "Portland, OR" },
+  { name: "Kenton", region: "North", city: "Portland, OR" },
+  { name: "Multnomah", region: "Southwest", city: "Portland, OR" },
+  { name: "Hillsdale", region: "Southwest", city: "Portland, OR" },
 ];
 
 export function getLocation(slug: string) {
@@ -49,7 +65,7 @@ export function getLocation(slug: string) {
 }
 
 export function fullAddress(location: Location) {
-  return `${location.street}, Portland, OR ${location.zip}, United States`;
+  return `${location.street}, ${location.city}, OR ${location.zip}, United States`;
 }
 
 export function telHref(phone: string) {

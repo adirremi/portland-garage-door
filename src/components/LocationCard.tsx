@@ -27,7 +27,9 @@ export function LocationCard({
           {location.street}
         </Link>
       </h3>
-      <p className="mt-1 text-sm text-ink/65">Portland, OR {location.zip}</p>
+      <p className="mt-1 text-sm text-ink/65">
+        {location.city}, OR {location.zip}
+      </p>
 
       <div className="mt-6 flex flex-wrap gap-2">
         <PhoneLink phone={location.phone} className="flex-1" />
@@ -58,7 +60,9 @@ export function LocationRow({ location }: { location: Location }) {
         >
           {location.street}
         </Link>
-        <p className="text-sm text-ink/60">Portland, OR {location.zip}</p>
+        <p className="text-sm text-ink/60">
+          {location.city}, OR {location.zip}
+        </p>
       </div>
       <div className="flex flex-wrap gap-2">
         <PhoneLink phone={location.phone} />
@@ -88,10 +92,12 @@ export function AreaRow({
 export function AreaCard({
   name,
   region,
+  city = "Portland, OR",
   index,
 }: {
   name: string;
   region: string;
+  city?: string;
   index?: number;
 }) {
   return (
@@ -109,7 +115,7 @@ export function AreaCard({
       <h3 className="mt-3 font-display text-2xl leading-tight tracking-tight">
         {name}
       </h3>
-      <p className="mt-1 text-sm text-ink/65">Portland, OR</p>
+      <p className="mt-1 text-sm text-ink/65">{city}</p>
     </article>
   );
 }

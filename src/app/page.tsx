@@ -1,8 +1,9 @@
-import { areas, locations } from "@/data/locations";
+import { areas, shop } from "@/data/locations";
 import { photos, services } from "@/data/media";
-import { AreaRow, LocationRow } from "@/components/LocationCard";
+import { AreaRow } from "@/components/LocationCard";
 import { CoverImage, ServicePhoto } from "@/components/Photo";
-import { PageLink } from "@/components/links";
+import { MapLink, PageLink, PhoneLink } from "@/components/links";
+import { ShopPanel } from "@/components/Shop";
 import { Seam } from "@/components/marks";
 
 export default function Home() {
@@ -15,23 +16,22 @@ export default function Home() {
           priority
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-steel-deep/94 via-steel-deep/78 to-steel-deep/35" />
+        <div className="absolute inset-0 bg-gradient-to-r from-steel-deep/94 via-steel-deep/78 to-steel-deep/30" />
         <div className="relative mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
           <p className="text-[0.72rem] uppercase tracking-[0.22em] text-mist">
-            Portland, Oregon
+            Happy Valley, Oregon
           </p>
           <h1 className="mt-4 max-w-xl font-display text-[3.1rem] leading-[0.95] tracking-tight text-paper md:text-7xl">
-            Garage door work.
-            <span className="italic text-mist"> Portland.</span>
+            Garage door repair.
+            <span className="italic text-mist"> HighGuard.</span>
           </h1>
           <p className="mt-6 max-w-md text-base leading-7 text-paper/75">
-            Repair, springs, openers, and doors. The service area is listed on
-            every page.
+            Repair, springs, openers, and doors. Call the Happy Valley shop or
+            open the map.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <PageLink href="/locations" variant="paper">
-              Service area
-            </PageLink>
+            <PhoneLink phone={shop.phone} variant="paper" />
+            <MapLink href={shop.mapUrl} variant="ghostLight" />
             <PageLink href="/services" variant="ghostLight">
               Services
             </PageLink>
@@ -40,35 +40,14 @@ export default function Home() {
       </section>
 
       <section className="mx-auto max-w-6xl px-5 py-16 md:px-8">
-        <div className="flex items-end justify-between gap-4">
-          <div>
-            <p className="text-[0.7rem] uppercase tracking-[0.18em] text-steel">
-              Directory
-            </p>
-            <h2 className="mt-2 font-display text-4xl tracking-tight">
-              {locations.length > 0
-                ? "Find a Portland location"
-                : "Portland service area"}
-            </h2>
-          </div>
-          <PageLink href="/locations" variant="ghost" className="hidden px-0 md:inline-flex">
-            All areas
-          </PageLink>
-        </div>
+        <p className="text-[0.7rem] uppercase tracking-[0.18em] text-steel">
+          Shop
+        </p>
+        <h2 className="mt-2 font-display text-4xl tracking-tight">
+          Happy Valley Town Center
+        </h2>
         <Seam className="my-8" />
-        {locations.length > 0 ? (
-          <ol>
-            {locations.map((location) => (
-              <LocationRow key={location.slug} location={location} />
-            ))}
-          </ol>
-        ) : (
-          <ol>
-            {areas.map((area) => (
-              <AreaRow key={area.name} name={area.name} region={area.region} />
-            ))}
-          </ol>
-        )}
+        <ShopPanel />
       </section>
 
       <section className="border-y border-line bg-paper-2">
@@ -100,6 +79,28 @@ export default function Home() {
             </PageLink>
           </div>
         </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-5 py-16 md:px-8">
+        <div className="flex items-end justify-between gap-4">
+          <div>
+            <p className="text-[0.7rem] uppercase tracking-[0.18em] text-steel">
+              Directory
+            </p>
+            <h2 className="mt-2 font-display text-4xl tracking-tight">
+              Service area
+            </h2>
+          </div>
+          <PageLink href="/locations" variant="ghost" className="hidden px-0 md:inline-flex">
+            All areas
+          </PageLink>
+        </div>
+        <Seam className="my-8" />
+        <ol>
+          {areas.map((area) => (
+            <AreaRow key={area.name} name={area.name} region={area.region} />
+          ))}
+        </ol>
       </section>
     </>
   );

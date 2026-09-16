@@ -1,20 +1,23 @@
 import type { Metadata } from "next";
 import { photos } from "@/data/media";
 import { PageBanner, ServicePhoto } from "@/components/Photo";
-import { PageLink } from "@/components/links";
+import { MapLink, PageLink, PhoneLink } from "@/components/links";
+import { shop } from "@/data/locations";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Portland Garage Door works on garage doors in Portland, Oregon.",
+  description:
+    "HighGuard Garage Door Repair works from Happy Valley, Oregon.",
 };
 
 export default function AboutPage() {
   return (
     <>
-      <PageBanner kicker="About" title="A Portland shop, on the door.">
+      <PageBanner kicker="About" title="A Happy Valley shop, on the door.">
         <p className="mt-5 max-w-xl text-base leading-7 text-paper/75">
-          Garage door work across Portland. The list of neighborhoods is on the
-          locations page.
+          HighGuard works from Happy Valley Town Center. The phone and map are
+          on every page.
         </p>
       </PageBanner>
 
@@ -22,24 +25,24 @@ export default function AboutPage() {
         <div className="grid items-start gap-12 md:grid-cols-[1.1fr_0.9fr]">
           <div>
             <p className="max-w-xl text-base leading-7 text-ink/70">
-              Portland Garage Door works on residential and commercial doors in
-              Portland, Oregon. The work is repair, springs, cables, openers,
+              {site.name} works on residential and commercial doors from Happy
+              Valley, Oregon. The work is repair, springs, cables, openers,
               panels, and full doors. That is the list.
             </p>
           </div>
           <ServicePhoto
-            src={photos.panels.src}
-            alt={photos.panels.alt}
+            src={photos.hero.src}
+            alt={photos.hero.alt}
             className="aspect-[4/3]"
           />
         </div>
 
         <div className="mt-14 grid gap-10 md:grid-cols-3">
           <article>
-            <p className="font-display text-5xl text-copper/80">OR</p>
-            <h2 className="mt-2 font-display text-2xl">Portland</h2>
+            <p className="font-display text-5xl text-copper/80">HV</p>
+            <h2 className="mt-2 font-display text-2xl">Happy Valley</h2>
             <p className="mt-2 text-sm leading-6 text-ink/70">
-              Downtown through the eastside, the west hills, and North Portland.
+              {shop.street}, {shop.city}, OR {shop.zip}.
             </p>
           </article>
           <article>
@@ -50,18 +53,18 @@ export default function AboutPage() {
             </p>
           </article>
           <article>
-            <p className="font-display text-5xl text-copper/80">PDX</p>
-            <h2 className="mt-2 font-display text-2xl">City limits</h2>
+            <p className="font-display text-5xl text-copper/80">OR</p>
+            <h2 className="mt-2 font-display text-2xl">East metro</h2>
             <p className="mt-2 text-sm leading-6 text-ink/70">
-              Every neighborhood on this site is inside Portland.
+              Happy Valley and Portland neighborhoods listed on the locations
+              page.
             </p>
           </article>
         </div>
 
         <div className="mt-14 flex flex-wrap gap-3">
-          <PageLink href="/locations" variant="primary">
-            See the service area
-          </PageLink>
+          <PhoneLink phone={shop.phone} />
+          <MapLink href={shop.mapUrl} />
           <PageLink href="/contact" variant="outline">
             Contact
           </PageLink>
