@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { areas, regions, shop } from "@/data/locations";
 import { PageBanner } from "@/components/Photo";
+import { CallBand } from "@/components/Sections";
 import { ShopPanel } from "@/components/Shop";
 import { MapLink, PhoneLink } from "@/components/links";
 import { site } from "@/lib/site";
@@ -54,6 +55,11 @@ export default function ContactPage() {
           })}
         </div>
       </div>
+
+      <CallBand
+        title="Call the Happy Valley shop."
+        text={`${shop.phone}. ${shop.street}.`}
+      />
     </>
   );
 }

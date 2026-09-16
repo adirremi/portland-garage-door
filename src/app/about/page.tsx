@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { photos } from "@/data/media";
+import { photos, services } from "@/data/media";
 import { PageBanner, ServicePhoto } from "@/components/Photo";
+import { CallBand, PhotoStrip } from "@/components/Sections";
 import { MapLink, PageLink, PhoneLink } from "@/components/links";
 import { shop } from "@/data/locations";
 import { site } from "@/lib/site";
@@ -21,6 +22,8 @@ export default function AboutPage() {
         </p>
       </PageBanner>
 
+      <PhotoStrip />
+
       <div className="mx-auto max-w-6xl px-5 py-14 md:px-8 md:py-20">
         <div className="grid items-start gap-12 md:grid-cols-[1.1fr_0.9fr]">
           <div>
@@ -28,6 +31,18 @@ export default function AboutPage() {
               {site.name} works on residential and commercial doors from Happy
               Valley, Oregon. The work is repair, springs, cables, openers,
               panels, and full doors. That is the list.
+            </p>
+            <p className="mt-5 max-w-xl text-base leading-7 text-ink/70">
+              The shop is at {shop.street}.{" "}
+              <a
+                href="https://en.wikipedia.org/wiki/Happy_Valley,_Oregon"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-steel underline-offset-4 hover:underline"
+              >
+                Happy Valley
+              </a>{" "}
+              sits in Clackamas County, east of Portland.
             </p>
           </div>
           <ServicePhoto
@@ -46,10 +61,12 @@ export default function AboutPage() {
             </p>
           </article>
           <article>
-            <p className="font-display text-5xl text-copper/80">4</p>
+            <p className="font-display text-5xl text-copper/80">
+              {String(services.length).padStart(2, "0")}
+            </p>
             <h2 className="mt-2 font-display text-2xl">Lines of work</h2>
             <p className="mt-2 text-sm leading-6 text-ink/70">
-              Repair, springs, openers, and doors.
+              Repair, springs, openers, and doors. Each one has a page.
             </p>
           </article>
           <article>
@@ -70,6 +87,11 @@ export default function AboutPage() {
           </PageLink>
         </div>
       </div>
+
+      <CallBand
+        title="Call the Happy Valley shop."
+        text={`${shop.phone}. ${shop.street}.`}
+      />
     </>
   );
 }

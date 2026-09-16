@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { areas, locations, regions, shop } from "@/data/locations";
 import { AreaCard, LocationCard } from "@/components/LocationCard";
 import { PageBanner } from "@/components/Photo";
+import { CallBand } from "@/components/Sections";
 import { ShopPanel } from "@/components/Shop";
 
 export const metadata: Metadata = {
@@ -58,6 +59,11 @@ export default function LocationsPage() {
           })}
         </div>
       </div>
+
+      <CallBand
+        title="Call the Happy Valley shop."
+        text={`${shop.phone}. ${shop.street}.`}
+      />
     </>
   );
 }

@@ -10,7 +10,10 @@ import {
 import { LocationJsonLd } from "@/components/JsonLd";
 import { LocationCard } from "@/components/LocationCard";
 import { PageBanner } from "@/components/Photo";
+import { CallBand, IssueList } from "@/components/Sections";
 import { MapLink, PageLink, PhoneLink } from "@/components/links";
+import { issues, services } from "@/data/media";
+import Link from "next/link";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -112,6 +115,32 @@ export default async function LocationPage({ params }: Props) {
             </aside>
           </div>
 
+          <section className="mt-16">
+            <h2 className="font-display text-3xl tracking-tight">
+              Work from this shop
+            </h2>
+            <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+              {services.map((service) => (
+                <li key={service.slug} className="border border-line bg-paper p-5">
+                  <Link
+                    href={`/services/${service.slug}`}
+                    className="font-display text-2xl tracking-tight hover:text-steel"
+                  >
+                    {service.title}
+                  </Link>
+                  <p className="mt-2 text-sm leading-6 text-ink/70">
+                    {service.text}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section className="mt-16">
+            <h2 className="font-display text-3xl tracking-tight">Common calls</h2>
+            <IssueList items={issues} />
+          </section>
+
           {nearby.length > 0 ? (
             <section className="mt-16">
               <h2 className="font-display text-3xl tracking-tight">
@@ -132,9 +161,20 @@ export default async function LocationPage({ params }: Props) {
                 </PageLink>
               </div>
             </section>
-          ) : null}
+          ) : (
+            <div className="mt-10">
+              <PageLink href="/locations" variant="outline">
+                Service area
+              </PageLink>
+            </div>
+          )}
         </div>
       </article>
+
+      <CallBand
+        title="Call this shop."
+        text={`${location.phone}. ${fullAddress(location)}.`}
+      />
     </>
   );
 }

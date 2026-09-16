@@ -2,6 +2,7 @@ import Link from "next/link";
 import { BrandMark, BrandName } from "@/components/Brand";
 import { MapLink, PhoneLink } from "@/components/links";
 import { areas, fullAddress, regions, shop } from "@/data/locations";
+import { services } from "@/data/media";
 import { site } from "@/lib/site";
 
 export function Footer() {
@@ -26,7 +27,34 @@ export function Footer() {
         </div>
 
         <div className="grid gap-8 sm:grid-cols-2">
-          {regions.map((region) => {
+          <div>
+            <p className="text-[0.7rem] uppercase tracking-[0.18em] text-mist">
+              Pages
+            </p>
+            <ul className="mt-3 space-y-2">
+              <li>
+                <Link href="/services" className="text-sm text-paper/85 hover:text-paper">
+                  Services
+                </Link>
+              </li>
+              {services.map((service) => (
+                <li key={service.slug}>
+                  <Link
+                    href={`/services/${service.slug}`}
+                    className="text-sm text-paper/85 hover:text-paper"
+                  >
+                    {service.title}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link href="/faq" className="text-sm text-paper/85 hover:text-paper">
+                  FAQ
+                </Link>
+              </li>
+            </ul>
+          </div>
+          {regions.slice(0, 3).map((region) => {
             const group = areas.filter((area) => area.region === region);
             if (group.length === 0) return null;
 
