@@ -9,19 +9,19 @@ export const photos = {
   },
   repair: {
     src: "/images/service-repair.jpg",
-    alt: "Garage door tracks, rollers, and lift hardware",
+    alt: "Technician checking a garage door jamb and hardware",
   },
   springs: {
     src: "/images/service-springs.jpg",
-    alt: "Torsion springs on a shaft above a garage door",
+    alt: "Torsion spring on a shaft above a garage door",
   },
   opener: {
     src: "/images/service-opener.jpg",
-    alt: "Ceiling-mounted garage door opener and rail",
+    alt: "Garage door opener and rail in an open residential garage",
   },
   panels: {
     src: "/images/service-panels.jpg",
-    alt: "Insulated steel garage door panels and weather seal",
+    alt: "Raised-panel garage door on a stone house",
   },
   texture: {
     src: "/images/texture-steel.jpg",
